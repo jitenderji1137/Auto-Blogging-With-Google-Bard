@@ -1,11 +1,9 @@
-const MobileAppTesting = require('../pageobjects/FetchData');
-const SecurePage = require('../pageobjects/secure.page')
 const axios = require('axios');
 describe('My Login application', () => {
     it('should login with valid credentials', async () => {
-        const axiosResponse = await axios.get("https://cyan-anxious-sheep.cyclic.app/NetFlixAPI");
+        const axiosResponse = await axios.get("https://excited-fly-windbreaker.cyclic.app/NetFlixAPI?_page=1&_limit=10");
         const data = axiosResponse.data;
-        for(let i = 13; i < 20; i++){
+        for(let i = 0; i < data.length ; i++){
             await browser.url("https://bard.google.com/");
             const bardinput = await $("#mat-input-0");
             await bardinput.setValue(`write Full Story of ${data[i].Title} in 1000 words only in english`);
@@ -17,6 +15,7 @@ describe('My Login application', () => {
             for (let pElement of paragraph) {
                 const text = await pElement.getText();
                 parastory+=text;
+                parastory+="<br/><br/>";
             }
             await browser.url("https://www.blogger.com/blog/posts/9195254730924193311");
             const threedot = await $("//div[@aria-label='Main menu']");
@@ -30,7 +29,7 @@ describe('My Login application', () => {
             <div><span face="&quot;helvetica neue&quot;, Helvetica, Arial, sans-serif" style="background-color: white; font-size: 12px;"><b><br /></b></span></div><div style="text-align: center;"><span><b><span style="font-size: medium;"><u><span style="background-color: black; color: red;">DISCLAMER</span></u><span style="background-color: black;">&nbsp; :&nbsp; </span></span><span style="background-color: black; color: white;">if you want any movie then you can message me on </span><u style="background-color: #fcff01;"><a href="https://www.instagram.com/vijayji1137" target="_blank">INSTAGRAM</a></u></b></span></div><div><span><b><br /></b></span></div>
             
           <center><b><span style="font-family: georgia; font-size: x-large;"><br /></span></b></center><center>
-              <b><span class="gag"><a href="https://github.com/jitenderji1137/Free-Netflix" target="_blank">Watch Full Movie in Hindi</a></span></b>
+              <b><span class="gag"><a href="https://github.com/jitenderji1137/Free-Netflix" target="_blank">Watch Now only on free Netflix</a></span></b>
           </center>
            
             <center>
@@ -87,9 +86,12 @@ describe('My Login application', () => {
           <a class="button" href="https://github.com/jitenderji1137/Free-Netflix" target="_blank">Download Movie Now in HD 1080p</a>
           
             <br /><br /></div><br /><p>${parastory}</p>`);
-            await driver.pause(30000);
+            await driver.pause(10000);
+            await driver.hideKeyboard();
+            await driver.pause(10000);
             const setting = await $("//div[@class='iC8G2d']");
             await setting.click();
+            await driver.pause(5000);
             const geans = await $("//textarea[@aria-label='Separate labels by commas']");
             await geans.setValue(`Featured,${data[i].Geans}`);
             const update = await $("//div[@aria-label='Publish']//span[@class='CwaK9']");
@@ -97,6 +99,7 @@ describe('My Login application', () => {
             const uploadpub = $("//div[@class='XfpsVe J9fJmf']//span[@class='RveJvd snByac'][normalize-space()='Confirm']");
             await uploadpub.click();
             await driver.pause(30000);
+            console.log(`${i} has passed`);
                 }
             })
     })
