@@ -19,7 +19,7 @@ describe('My Login application', () => {
                 parastory+=text;
                 parastory+="<br/><br/>";
             }
-            await browser.url("https://www.blogger.com/blog/posts/9195254730924193311");
+            await browser.url("-------Give your blogger link-------");
             const threedot = await $("//div[@aria-label='Main menu']");
             await threedot.click();
             const newpost = $("//*[contains(text(), 'New Post')]");
