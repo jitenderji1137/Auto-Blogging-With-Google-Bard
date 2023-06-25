@@ -1,9 +1,11 @@
 const axios = require('axios');
+const MediumToken = "263a52af06104f51d50b81c4c71db4f89dc0d63ab1056c774b6c841f5dd9f8f00";
+const mediumid = "1df79544f5b15b691a37bb0e2d05fc759a97f57e2379d0dee745a69e7ac03b54b";
 describe('My Login application', () => {
     it('should login with valid credentials', async () => {
-        const axiosResponse = await axios.get("https://excited-fly-windbreaker.cyclic.app/NetFlixAPI?_page=1&_limit=10");
+        const axiosResponse = await axios.get("https://excited-fly-windbreaker.cyclic.app/NetFlixAPI?_page=1&_limit=20");
         const data = axiosResponse.data;
-        for(let i = 0; i < data.length ; i++){
+        for(let i = 0; i < 2 ; i++){
             await browser.url("https://bard.google.com/");
             const bardinput = await $("#mat-input-0");
             await bardinput.setValue(`write Full Story of ${data[i].Title} in 1000 words only in english`);
@@ -98,7 +100,37 @@ describe('My Login application', () => {
             await update.click();
             const uploadpub = $("//div[@class='XfpsVe J9fJmf']//span[@class='RveJvd snByac'][normalize-space()='Confirm']");
             await uploadpub.click();
-            await driver.pause(30000);
+            await driver.pause(15000);
+            await driver.pause(7000);
+            await browser.url("https://www.blogger.com/blog/posts/9195254730924193311");
+            await driver.pause(7000);
+            const lable = await $("(//div[@class='McBQdb'])[1]");
+            await lable.click();
+            const linkElement = await $("//div[@class='JPdR6b e5Emjc zCTr4e qjTEB']//div[@class='JAPqpe K0NPx']/a");
+            const linkURL =  await linkElement.getAttribute('href');
+            const apiUrl = `https://api.medium.com/v1/users/${mediumid}/posts`;
+            const postData = {
+              title: data[i].Title,
+              contentFormat: 'html',
+              content: `<h1>${data[i].Title}</h1><p></p><a href="${linkURL}" imageanchor="1" target="_blank"><img src="${data[i].Image}" width="100%" /></a><h1><b class="gag" >${data[i].Title}</b></h1><div><span><span style="white-space: pre-wrap;"><b><br /></b></span></span>
+              <div><span face="&quot;helvetica neue&quot;, Helvetica, Arial, sans-serif" style="background-color: white; font-size: 12px;"><b><br /></b></span></div><div style="text-align: center;"><span><b><span style="font-size: medium;"><u><span style="background-color: black; color: red;">DISCLAMER</span></u><span style="background-color: black;">&nbsp; :&nbsp; </span></span><span style="background-color: black; color: white;">if you want any movie then you can message me on </span><u style="background-color: #fcff01;"><a href="https://www.instagram.com/vijayji1137" target="_blank">INSTAGRAM</a></u></b></span></div><div><span><b><br /></b></span></div>
+              
+  <center><b><span style="font-family: georgia; font-size: x-large;"><br /></span></b></center><center>
+                <b><span class="gag"><a href="${linkURL}" target="_blank">Watch Now only on free Netflix</a></span></b>
+  </center>
+<center><br /></center>
+  <div style="text-align: center;"><br /></div><div style="text-align: center;">
+            <a class="button" href="${linkURL}" target="_blank">Download Movie Now in HD 1080p</a>
+            <br /><br /></div><br /><p>${parastory}</p>`,
+              tags: [`${data[i].Title} Watch Full ${data[i].MainCategory} in HD 1080p`],
+              publishStatus: 'public',
+            };
+            const headers = {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${MediumToken}`,
+            };
+            const response = await axios.post(apiUrl, postData, { headers });
+            console.log('Post created successfully:', response.data);
             console.log(`${i} has passed`);
                 }
             })

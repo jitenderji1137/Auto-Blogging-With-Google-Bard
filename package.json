@@ -12,7 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "@wdio/cli": "^8.11.2",
-    "axios": "^1.4.0"
+    "axios": "^1.4.0",
+    "tesseract.js": "^4.1.0"
   },
   "devDependencies": {
     "@babel/register": "^7.22.5",

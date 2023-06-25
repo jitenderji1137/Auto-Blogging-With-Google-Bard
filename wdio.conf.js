@@ -24,7 +24,9 @@ exports.config = {
     // will be called from there.
     //
     specs: [
-        './test/specs/**/*.js'
+        './test/specs/AutoBlog.js'
+        // './test/specs/newspost.js'
+        // './test/specs/imagetotext.js'
     ],
     // Patterns to exclude.
     exclude: [
