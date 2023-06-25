@@ -102,7 +102,7 @@ describe('My Login application', () => {
             await uploadpub.click();
             await driver.pause(15000);
             await driver.pause(7000);
-            await browser.url("https://www.blogger.com/blog/posts/9195254730924193311");
+            await browser.url("-------Give your blogger link-------");
             await driver.pause(7000);
             const lable = await $("(//div[@class='McBQdb'])[1]");
             await lable.click();
