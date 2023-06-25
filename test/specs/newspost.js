@@ -19,7 +19,7 @@ describe('My Login application', () => {
                 parastory+=text;
                 parastory+="<br/><br/>";
             }
-            await browser.url("https://www.blogger.com/blog/posts/7094022842899280747");
+            await browser.url("-------Give your blogger link-------");
             const threedot = await $("//div[@aria-label='Main menu']");
             await threedot.click();
             const newpost = $("//*[contains(text(), 'New Post')]");
@@ -41,7 +41,7 @@ describe('My Login application', () => {
             const uploadpub = $("//div[@class='XfpsVe J9fJmf']//span[@class='RveJvd snByac'][normalize-space()='Confirm']");
             await uploadpub.click();
             await driver.pause(7000);
-            await browser.url("https://www.blogger.com/blog/posts/7094022842899280747");
+            await browser.url("-------Give your blogger link-------");
             await driver.pause(7000);
             const lable = await $("(//div[@class='McBQdb'])[1]");
             await lable.click();
