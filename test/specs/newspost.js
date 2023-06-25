@@ -1,6 +1,6 @@
 const axios = require('axios');
-const MediumToken = "263a52af06104f51d50b81c4c71db4f89dc0d63ab1056c774b6c841f5dd9f8f00";
-const mediumid = "1df79544f5b15b691a37bb0e2d05fc759a97f57e2379d0dee745a69e7ac03b54b";
+const MediumToken = "********************************************************************"; // Give here your medium.com Token
+const mediumid = "****************************************************************"; // Give your medium.com id
 describe('My Login application', () => {
     it('should login with valid credentials', async () => {
         const axiosResponse = await axios.get("https://jitenderji1137.github.io/zee5apidata/newsdata.json");
